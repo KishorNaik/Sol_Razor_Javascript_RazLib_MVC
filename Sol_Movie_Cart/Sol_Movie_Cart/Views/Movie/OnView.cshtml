@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "OnView";
+}
+@model Sol_Movie_Cart.ViewModels.MovieViewModel
+
+<h1>OnView</h1>
+
+<div class="container">
+    <div id="divDisplayMovie" class="row" data-moviejson="@Model.MovieJson">
+        
+    </div>
+</div>
+
+@section Scripts{ 
+
+<script type="text/javascript" src="~/js/movieDisplayTemplateRender.js"></script>
+
+<script type="text/javascript">
+
+    function onDisplayMovie() {
+
+        var movieJson = JSON.stringify($("#divDisplayMovie").data("moviejson"));
+        console.log(movieJson);
+
+        var movie = JSON.parse(movieJson);
+        console.log(movie);
+
+        var movieDisplayTemplateRenderObj = new movieDisplayTemplateRender();
+        movieDisplayTemplateRenderObj
+            .templateRender(movie)
+            .then((resolve) => console.log(resolve));
+
+    }
+
+    onDisplayMovie();
+
+</script>
+
+}
